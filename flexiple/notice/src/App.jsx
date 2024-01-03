@@ -6,9 +6,11 @@ import Note from './Note'
 function App() {
 
 const [notes ,setNotes]=useState(JSON.parse(localStorage.getItem('notes'))||[])
- const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+let x = Math.floor(Math.random() * 50) + 1;
+let y = Math.floor(Math.random() * 50) + 1; 
+const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 const addNotes =()=>{
-  const newNotes = [...notes,{text:"New Note",x:0,y:0,isPinned:false}]
+  const newNotes = [...notes,{text:"New Note",x:x*10,y:y*10,isPinned:false}]
   localStorage.setItem('notes',JSON.stringify(newNotes))
   setNotes(newNotes)
 }

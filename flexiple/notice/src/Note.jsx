@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import pin from "../public/thumbtack.384x512.png"; 
+import unpin from "../public/unpin.475x512.png"; 
 const Note = ({
   note,
   ind,
@@ -37,6 +38,7 @@ const Note = ({
         left: note.x + "px",
         top: note.y + "px",
         zIndex: note.isPinned ? 1 : 0,
+        backgroundColor: note.isPinned ? "red" : "#f8f0abf2",
       }}
       draggable={!note.isPinned}
       onDragStart={(e) => onDragStart(e, ind)}
@@ -44,7 +46,16 @@ const Note = ({
     >
       <div className="note-header">
         <button onClick={() => removeNotes(ind)}>x</button>
-        <button onClick={() => pinNote(ind)}>Pin</button>
+        <button
+          className=  "rainbow1 rainbow-1"
+          onClick={() => pinNote(ind)}
+        >
+          {note.isPinned ? (
+            <img className="pin" src={unpin} />
+          ) : (
+            <img className="pin" src={pin} />
+          )}
+        </button>
       </div>
       <div className="note-content" onClick={handleEdit}>
         {isEditing ? (
@@ -59,7 +70,9 @@ const Note = ({
           <span>{note.text}</span>
         )}
       </div>
-        <button onClick={handleEdit}>Edit</button>
+      <button className="rainbow rainbow-1" onClick={handleEdit}>
+        Edit
+      </button>
     </div>
   );
 };
